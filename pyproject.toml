@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lob-engine"
+version = "0.1.0"
+description = "A price-time priority limit order book matching engine with an Avellaneda-Stoikov market-making simulator"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["sortedcontainers>=2.4", "numpy>=1.24"]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.7"]
+dev = ["pytest>=7", "hypothesis>=6", "ruff>=0.4", "matplotlib>=3.7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lob"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
